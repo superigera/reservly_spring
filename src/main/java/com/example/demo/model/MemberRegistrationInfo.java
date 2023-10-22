@@ -21,6 +21,8 @@ public class MemberRegistrationInfo {
 
 	private String password;
 
+	private String authority;
+
 	private String created_at;
 
 	private String update_at;

@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS members (
     age INT,
     gender VARCHAR(10),
     password VARCHAR(255),
+    authority VARCHAR(100),
     created_at VARCHAR(50),
   	update_at VARCHAR(50)
 );
