@@ -14,6 +14,7 @@
 		age,
 		gender,
 		password,
+		authority,
 		created_at
 		)
 		values(
@@ -24,8 +25,14 @@
 		#{age},
 		#{gender},
 		#{password},
+		#{authority},
 		CURRENT_TIMESTAMP
 		)
 	</insert>
+	
+	<!-- 新規会員登録重複チェック -->
+	<select id="duplicationCheck" resultType="int">
+  		SELECT COUNT(*) FROM members WHERE email = #{email}
+	</select>
 	
 </mapper>

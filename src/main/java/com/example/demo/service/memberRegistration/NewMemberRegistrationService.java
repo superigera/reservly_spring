@@ -1,21 +1,18 @@
 package com.example.demo.service.memberRegistration;
 
-import com.example.demo.model.MemberRegistrationInfo;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import com.example.demo.model.MemberInfo;
 
 public interface NewMemberRegistrationService {
 
 	/**
 	 * 新規会員登録
 	 * 
-	 * @param memberRegistrationInfo 会員情報
+	 * @param memberInfo 会員情報
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public void newMemberRegistration(MemberRegistrationInfo memberRegistrationInfo);
-
-//	/**
-//	 * 問い合わせ内容確認メール送信
-//	 * 
-//	 * @param 問い合わせ内容
-//	 * @throws URISyntaxException
-//	 */
-//	public void sendEmail(InquiryInfo InquiryInfo) throws IOException, URISyntaxException;
+	public void newMemberRegistration(MemberInfo memberInfo) throws FileNotFoundException, IOException;
 }

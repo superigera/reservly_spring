@@ -3,6 +3,8 @@ package com.example.demo.config;
 import static org.springframework.security.config.Customizer.*;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +14,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -19,6 +22,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 @EnableWebSecurity
@@ -34,43 +39,41 @@ public class SecurityConfig {
 
 	@Autowired
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).withUser("user")
-//				.password(passwordEncoder().encode("test")).roles("USER");
-//		auth.userDetailsService(userDetailsService);
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-//		auth.authenticationProvider(authenticationProvider());
+		auth.userDetailsService(userDetailsService);
 	}
-
-//	@Autowired
-//	public DaoAuthenticationProvider authenticationProvider() {
-//		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-//		provider.setUserDetailsService(userDetailsService);
-//		provider.setPasswordEncoder(passwordEncoder());
-//		return provider;
-//	}
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.cors(withDefaults()).csrf(csrf -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/login"), // TODO
-				new AntPathRequestMatcher("/h2-console/**"), new AntPathRequestMatcher("/loginSuccess")))
+				new AntPathRequestMatcher("/h2-console/**"), new AntPathRequestMatcher("/loginSuccess"),
+				new AntPathRequestMatcher("/newMemberRegistration")))
 				.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()))
 				.authorizeHttpRequests(authorizeRequests -> authorizeRequests
 						.requestMatchers(new AntPathRequestMatcher("/csrf-token")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/newMemberRegistration/comfirm")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/loginSuccess")).permitAll()
-//						.requestMatchers(new AntPathRequestMatcher("/loginSuccess")).authenticated()
-
-						.requestMatchers(new AntPathRequestMatcher("/login")).permitAll().anyRequest().authenticated())
+						.requestMatchers(new AntPathRequestMatcher("/newMemberRegistration")).permitAll())
 				.formLogin(form -> form.loginProcessingUrl("/login")
 						.successHandler((request, response, authentication) -> {
-							response.sendRedirect("/loginSuccess");
+							Object principal = authentication.getPrincipal();
+							String authority = authentication.getAuthorities().isEmpty() ? ""
+									: authentication.getAuthorities().iterator().next().getAuthority();
+
+							Map<String, String> data = new HashMap<>();
+							if (principal instanceof UserDetails) {
+								UserDetails userDetails = (UserDetails) principal;
+								data.put("email", userDetails.getUsername());
+								data.put("authority", authority);
+							}
+
+							response.setStatus(HttpStatus.OK.value());
+							response.setContentType("application/json;charset=UTF-8");
+							new ObjectMapper().writeValue(response.getOutputStream(), data);
 						}).failureHandler((request, response, exception) -> {
 							response.setStatus(HttpStatus.UNAUTHORIZED.value());
 						}))
-				.sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-		;
-
+				.sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 		return http.build();
 	}
 
