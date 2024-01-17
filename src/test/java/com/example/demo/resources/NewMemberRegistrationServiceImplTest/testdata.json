@@ -1,0 +1,71 @@
+[
+    {
+        "testName": "正常系",
+        "memberInfoRequest": {
+            "memberID": 1234,
+            "lastName": "姓",
+            "firstName": "名",
+            "email": "test@test.com",
+            "phoneNumber": "0123456789",
+            "age": "18",
+            "gender": "男性",
+            "password": "password",
+            "authority": null,
+            "created_at": null,
+            "update_at": null
+        },
+        "duplicationCheckResponse": 0,
+        "memberInfoResponse": {
+            "memberID": 1234,
+            "lastName": "姓",
+            "firstName": "名",
+            "email": "test@test.com",
+            "phoneNumber": "0123456789",
+            "age": "18",
+            "gender": "男性",
+            "password": "hashedPassword",
+            "authority": "USER",
+            "created_at": null,
+            "update_at": null
+        },
+        "resultExceptionName": null
+    },
+    {
+        "testName": "エラー系：登録対象とDBのメールアドレスが重複",
+        "memberInfoRequest": {
+            "memberID": 1234,
+            "lastName": "姓",
+            "firstName": "名",
+            "email": "test@test.com",
+            "phoneNumber": "0123456789",
+            "age": "18",
+            "gender": "男性",
+            "password": "password",
+            "authority": null,
+            "created_at": null,
+            "update_at": null
+        },
+        "duplicationCheckResponse": 1,
+        "memberInfoResponse": null,
+        "resultExceptionName": "com.example.demo.service.memberRegistration.NewMemberRegistrationServiceImpl$DuplicationCheckException"
+    },
+    {
+        "testName": "エラー系：環境変数ファイルの取得、ファイルの読み込みエラー",
+        "memberInfoRequest": {
+            "memberID": 1234,
+            "lastName": "姓",
+            "firstName": "名",
+            "email": "test@test.com",
+            "phoneNumber": "0123456789",
+            "age": "18",
+            "gender": "男性",
+            "password": "password",
+            "authority": null,
+            "created_at": null,
+            "update_at": null
+        },
+        "duplicationCheckResponse": 0,
+        "memberInfoResponse": null,
+        "resultExceptionName": "java.io.IOException"
+    }
+]

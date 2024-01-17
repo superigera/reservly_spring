@@ -21,15 +21,17 @@ public class NewMemberRegistrationServiceImpl implements NewMemberRegistrationSe
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	@Autowired
+	private Properties properties;
+
 	/**
 	 * 新規会員登録
 	 * 
 	 * @param memberInfo 会員情報
 	 * @throws IOException
-	 * @throws FileNotFoundException
 	 */
 	@Override
-	public void newMemberRegistration(MemberInfo memberInfo) throws FileNotFoundException, IOException {
+	public void newMemberRegistration(MemberInfo memberInfo) throws IOException {
 
 		// 重複チェック
 		if (newMemberRegistrationMapper.duplicationCheck(memberInfo.getEmail()) != 0) {
@@ -37,7 +39,6 @@ public class NewMemberRegistrationServiceImpl implements NewMemberRegistrationSe
 		}
 
 		// USER権限を付与
-		Properties properties = new Properties();
 		properties.load(new FileInputStream("src/main/resources/application.properties"));
 		String memberAuthority = properties.getProperty("MEMBER_AUTHORITY_USER");
 		memberInfo.setAuthority(memberAuthority);
