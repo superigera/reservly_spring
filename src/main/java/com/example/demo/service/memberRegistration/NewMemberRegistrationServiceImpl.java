@@ -1,7 +1,6 @@
 package com.example.demo.service.memberRegistration;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -28,7 +27,7 @@ public class NewMemberRegistrationServiceImpl implements NewMemberRegistrationSe
 	 * 新規会員登録
 	 * 
 	 * @param memberInfo 会員情報
-	 * @throws IOException
+	 * @throws IOException ファイルから変数取得失敗
 	 */
 	@Override
 	public void newMemberRegistration(MemberInfo memberInfo) throws IOException {

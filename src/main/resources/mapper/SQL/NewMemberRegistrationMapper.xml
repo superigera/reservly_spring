@@ -35,4 +35,9 @@
   		SELECT COUNT(*) FROM members WHERE email = #{email}
 	</select>
 	
+	<!-- 会員情報取得 -->
+	<select id="getMemberInfoByEmail" resultType="com.example.demo.model.MemberInfo">
+  		SELECT * FROM members WHERE email = #{email}
+	</select>
+	
 </mapper>

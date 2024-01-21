@@ -20,4 +20,11 @@ public interface NewMemberRegistrationMapper {
 	 * @param email メールアドレス
 	 */
 	public int duplicationCheck(String email);
+
+	/**
+	 * 会員情報取得
+	 * 
+	 * @param email メールアドレス
+	 */
+	public MemberInfo getMemberInfoByEmail(String email);
 }
