@@ -26,22 +26,6 @@
             "authority": "USER",
             "created_at": "CURRENT_TIMESTAMP",
             "update_at": null
-        },
-        "email": "test@test.com",
-        "duplicationCheckResponse": 0
-    },
-    {
-        "testName": "正常系：重複チェック　重複なし",
-        "memberInfoRequest": null,
-        "memberInfoResponse": null,
-        "email": "test@test.com",
-        "duplicationCheckResponse": 0
-    },
-    {
-        "testName": "正常系：重複チェック　重複あり",
-        "memberInfoRequest": null,
-        "memberInfoResponse": null,
-        "email": "user@test.com",
-        "duplicationCheckResponse": 1
+        }
     }
 ]

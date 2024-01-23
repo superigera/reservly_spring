@@ -1,0 +1,12 @@
+[
+    {
+        "testName": "正常系：重複チェック　重複なし",
+        "email": "test@test.com",
+        "duplicationCheckResponse": 0
+    },
+    {
+        "testName": "正常系：重複チェック　重複あり",
+        "email": "user@test.com",
+        "duplicationCheckResponse": 1
+    }
+]

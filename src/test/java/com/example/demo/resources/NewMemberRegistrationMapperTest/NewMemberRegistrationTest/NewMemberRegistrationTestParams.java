@@ -1,11 +1,11 @@
-package com.example.demo.resources.NewMemberRegistrationMapperTest;
+package com.example.demo.resources.NewMemberRegistrationMapperTest.NewMemberRegistrationTest;
 
 import com.example.demo.model.MemberInfo;
 
 import lombok.Data;
 
 @Data
-public class TestParams {
+public class NewMemberRegistrationTestParams {
 
 	// テスト名
 	public String testName;
@@ -15,11 +15,5 @@ public class TestParams {
 
 	// 検証結果用の会員情報のレスポンス
 	public MemberInfo memberInfoResponse;
-
-	// リクエストのメールアドレス
-	public String email;
-
-	// 検証結果用の会員情報のレスポンス
-	public int duplicationCheckResponse;
 
 }
