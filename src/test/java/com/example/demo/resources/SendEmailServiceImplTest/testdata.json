@@ -1,0 +1,65 @@
+    [
+        {
+            "testName": "正常系：メール送信成功",
+            "memberInfoRequest": {
+                "memberID": 1234,
+                "lastName": "姓",
+                "firstName": "名",
+                "email": "test@test.com",
+                "phoneNumber": "0123456789",
+                "age": "18",
+                "gender": "男性",
+                "password": "password",
+                "authority": null,
+                "created_at": null,
+                "update_at": null
+            },
+            "sendGridResponse": {
+                "statusCode": 202,
+                "body": "",
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "testName": "正常系：メール送信失敗(サーバー到達)",
+            "memberInfoRequest": {
+                "memberID": 1234,
+                "lastName": "姓",
+                "firstName": "名",
+                "email": "test@test.com",
+                "phoneNumber": "0123456789",
+                "age": "18",
+                "gender": "男性",
+                "password": "password",
+                "authority": null,
+                "created_at": null,
+                "update_at": null
+            },
+            "sendGridResponse": {
+                "statusCode": 400,
+                "body": "{\"errors\": [{\"message\": \"パラメータが無効です\", \"field\": \"email\", \"help\": \"正しいメールアドレスを指定してください\"}]}",
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "testName": "正常系：メール送信失敗(サーバー未到達)",
+            "memberInfoRequest": {
+                "memberID": 1234,
+                "lastName": "姓",
+                "firstName": "名",
+                "email": null,
+                "phoneNumber": "0123456789",
+                "age": "18",
+                "gender": "男性",
+                "password": "password",
+                "authority": null,
+                "created_at": null,
+                "update_at": null
+            },
+            "sendGridResponse": null
+        }
+    ]
