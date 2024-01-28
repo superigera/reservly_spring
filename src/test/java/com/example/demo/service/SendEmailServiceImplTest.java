@@ -21,6 +21,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sendgrid.Request;
 import com.sendgrid.SendGrid;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 @SpringBootTest
 public class SendEmailServiceImplTest {
 
@@ -29,6 +31,9 @@ public class SendEmailServiceImplTest {
 
 	@Mock
 	private SendGrid sendGrid;
+
+	@Mock
+	private Dotenv dotenv;
 
 	public static Stream<TestParams> provideTestParameters() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -48,14 +53,16 @@ public class SendEmailServiceImplTest {
 	@MethodSource("provideTestParameters")
 	public void testWithParameters(TestParams params) throws IOException {
 
-		when(sendGrid.api(any(Request.class))).thenReturn(params.sendGridResponse);
+		if (params.testName.contains("サーバー未到達")) {
+			when(sendGrid.api(any(Request.class))).thenThrow(new IOException());
+		} else {
+			when(sendGrid.api(any(Request.class))).thenReturn(params.sendGridResponse);
+		}
 
 		service.sendMemberRegistrationEmail(params.memberInfoRequest);
 
 		// モックの SendGrid が適切に呼び出されたか検証
-		if (!params.testName.contains("サーバー未到達")) {
-			verify(sendGrid, times(1)).api(any(Request.class));
-		}
+		verify(sendGrid, times(1)).api(any(Request.class));
 
 	}
 }
