@@ -1,0 +1,31 @@
+[
+    {
+        "testName": "正常系：新規会員登録チェック",
+        "memberInfoRequest": {
+            "memberID": null,
+            "lastName": "姓",
+            "firstName": "名",
+            "email": "1234@test.com",
+            "phoneNumber": "0123456789",
+            "age": "18",
+            "gender": "男性",
+            "password": "hashedPassword",
+            "authority": "USER",
+            "created_at": null,
+            "update_at": null
+        },
+        "memberInfoResponse": {
+            "memberID": 3,
+            "lastName": "姓",
+            "firstName": "名",
+            "email": "1234@test.com",
+            "phoneNumber": "0123456789",
+            "age": "18",
+            "gender": "男性",
+            "password": "hashedPassword",
+            "authority": "USER",
+            "created_at": "CURRENT_TIMESTAMP",
+            "update_at": null
+        }
+    }
+]
