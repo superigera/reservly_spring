@@ -1,4 +1,4 @@
-package com.example.demo.resources.ProductServiceInplTest;
+package com.example.demo.resources.ProductServiceImplTest;
 
 import java.util.List;
 

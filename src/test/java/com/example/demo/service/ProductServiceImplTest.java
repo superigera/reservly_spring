@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.model.Product;
 import com.example.demo.repository.ProductMapper;
-import com.example.demo.resources.ProductServiceInplTest.TestParams;
+import com.example.demo.resources.ProductServiceImplTest.TestParams;
 import com.example.demo.service.Product.ProductServiceImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +32,7 @@ public class ProductServiceImplTest {
 	public static Stream<TestParams> provideTestParameters() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		// JSONファイルのパスを指定
-		String jsonFilePath = "src/test/java/com/example/demo/resources/ProductServiceInplTest/testdata.json";
+		String jsonFilePath = "src/test/java/com/example/demo/resources/ProductServiceImplTest/testdata.json";
 
 		// JSONファイルからTestParamsオブジェクトのリストを読み込む
 		List<TestParams> testParamList = objectMapper.readValue(Paths.get(jsonFilePath).toFile(),

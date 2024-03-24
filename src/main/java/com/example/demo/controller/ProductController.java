@@ -28,7 +28,7 @@ public class ProductController {
 	 * @return 商品情報
 	 */
 	@PostMapping("/fetchProduct")
-	public ResponseEntity<?> newMemberRegistration() {
+	public ResponseEntity<?> fetchProduct() {
 		List<Product> resuponseProductList = productService.fetchProduct();
 		log.info(resuponseProductList.toString());
 
