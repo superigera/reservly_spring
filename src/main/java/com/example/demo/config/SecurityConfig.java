@@ -46,13 +46,14 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.cors(withDefaults()).csrf(csrf -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/login"), // TODO
 				new AntPathRequestMatcher("/h2-console/**"), new AntPathRequestMatcher("/loginSuccess"),
-				new AntPathRequestMatcher("/newMemberRegistration")))
+				new AntPathRequestMatcher("/newMemberRegistration"), new AntPathRequestMatcher("/fetchProduct")))
 				.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()))
 				.authorizeHttpRequests(authorizeRequests -> authorizeRequests
 						.requestMatchers(new AntPathRequestMatcher("/csrf-token")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/newMemberRegistration/comfirm")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/loginSuccess")).permitAll()
+						.requestMatchers(new AntPathRequestMatcher("/fetchProduct")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/newMemberRegistration")).permitAll())
 				.formLogin(form -> form.loginProcessingUrl("/login")
 						.successHandler((request, response, authentication) -> {

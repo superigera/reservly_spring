@@ -1,0 +1,59 @@
+[
+    {
+        "testName": "正常系：取得成功",
+        "productListResponse": [
+            {
+                "productID": 1,
+                "productName": "商品A",
+                "productDescription": "商品Aの説明です。",
+                "productImage": "https://via.placeholder.com/200",
+                "productPrice": 1000,
+                "productQuantity": 1,
+                "productMaxQuantity": 5,
+                "productReleaseDate": "2023-01-01",
+                "productCategoryName": "電子機器",
+                "created_at": null,
+                "update_at": null
+            },
+            {
+                "productID": 2,
+                "productName": "商品B",
+                "productDescription": "商品Bの説明です。",
+                "productImage": "https://via.placeholder.com/200",
+                "productPrice": 2000,
+                "productQuantity": 1,
+                "productMaxQuantity": 3,
+                "productReleaseDate": "2023-02-01",
+                "productCategoryName": "家具",
+                "created_at": null,
+                "update_at": null
+            },
+            {
+                "productID": 3,
+                "productName": "商品C",
+                "productDescription": "商品Cの説明です。",
+                "productImage": "https://via.placeholder.com/200",
+                "productPrice": 3000,
+                "productQuantity": 1,
+                "productMaxQuantity": 3,
+                "productReleaseDate": "2023-03-01",
+                "productCategoryName": "書籍",
+                "created_at": null,
+                "update_at": null
+            },
+            {
+                "productID": 4,
+                "productName": "商品D",
+                "productDescription": "商品Dの説明です。",
+                "productImage": "https://via.placeholder.com/200",
+                "productPrice": 4000,
+                "productQuantity": 1,
+                "productMaxQuantity": 1,
+                "productReleaseDate": "2023-03-01",
+                "productCategoryName": "書籍",
+                "created_at": null,
+                "update_at": null
+            }
+        ]
+    }
+]
