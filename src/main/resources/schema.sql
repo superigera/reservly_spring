@@ -11,24 +11,3 @@ CREATE TABLE IF NOT EXISTS members (
     created_at VARCHAR(50),
   	update_at VARCHAR(50)
 );
-
-CREATE TABLE IF NOT EXISTS Product (
-    productID INT PRIMARY KEY AUTO_INCREMENT,
-    productName VARCHAR(255),
-    productDescription TEXT,
-    productImage VARCHAR(255),
-    productPrice INT,
-    productQuantity INT,
-    productMaxQuantity INT,
-    productReleaseDate VARCHAR(50),
-    productCategoryID VARCHAR(50),
-    created_at VARCHAR(50),
-    update_at VARCHAR(50)
-);
-
-CREATE TABLE IF NOT EXISTS ProductCategory (
-    productCategoryID INT PRIMARY KEY AUTO_INCREMENT,
-    productCategoryName VARCHAR(50),
-    created_at VARCHAR(50),
-    update_at VARCHAR(50)
-);
